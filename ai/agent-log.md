@@ -61,3 +61,11 @@
 **Human decision:** Accepted MatchResult enum and all MatchRecord design. Both files compile successfully.
 
 **Related commits:** (311ec16)
+
+## Implementation Agent - DataManager class
+
+**Main contribution:** Wrote the DataManager class (central storage facade). 6 entity collections, 18 CRUD methods (add/remove/update per type), 8 finders (byId for all, byName for Player/Hero/Team). Pure storage — no business logic. Explained Main wiring via constructor injection pattern.
+
+**Human decision:** Accepted all code. Compiled successfully.
+
+**Related commits:** (aa4cf4a)

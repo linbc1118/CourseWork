@@ -311,7 +311,7 @@ Claude wrote `src/model/Team.java` with 3 fields (id, name, playerIds as List<In
 
 ## Prompt 008
 
-**Time:** (实际时间)
+**Time:** 2026-06-06 00:04
 **Tool/Model:** Claude Code (Deepseek V4 Pro)
 **Agent Role:** Implementation Agent
 **Related Commit:** (311ec16)
@@ -353,3 +353,63 @@ Both files compiled successfully.
 
 ### Related Git Commit
 (311ec16)
+
+---
+
+## Prompt 009
+
+**Time:** 2026-06-06 00:14
+**Tool/Model:** Claude Code (Deepseek V4 Pro)
+**Agent Role:** Implementation Agent
+**Related Commit:** (aa4cf4a)
+
+### My Prompt
+You are acting as an Implementation Agent. I need a DataManager class that holds all data for my Honor of Kings system.
+
+Package: service
+
+Data structures (private static or instance? Let's make it a singleton or static? I prefer a regular class that will be instantiated once in Main. So instance fields.)
+
+Attributes:
+- List<Player> players
+- List<Admin> admins
+- List<Hero> heroes
+- List<Equipment> equipmentList
+- List<Team> teams
+- List<MatchRecord> matchRecords
+
+Constructor: DataManager() - initialize empty ArrayLists.
+
+Methods needed (basic CRUD and finders):
+- Getters for each list (return copies or direct? Return direct for simplicity, but we can mention)
+- addPlayer(Player p), removePlayer(int playerId), updatePlayer(Player p)
+- Similarly for Admin, Hero, Equipment, Team, MatchRecord (but Admin may not need remove, but include for completeness)
+- findPlayerById(int id): Player (or null)
+- findPlayerByName(String name): Player (or null)
+- findHeroById(int id): Hero
+- findHeroByName(String name): Hero
+- findEquipmentById(int id): Equipment
+- findTeamById(int id): Team
+- findTeamByName(String name): Team
+- findMatchRecordById(int id): MatchRecord
+
+No file I/O yet.
+
+Write the complete code with comments. Make sure to handle null safely.
+
+After the code, explain how Main will create one instance of DataManager and pass it to services.
+
+### AI Response Summary
+Claude wrote `src/service/DataManager.java` (overwriting an existing stub) with 6 entity collections (players, admins, heroes, equipmentList, teams, matchRecords), constructor initializing all as empty ArrayLists, 3 CRUD methods per entity type (18 total: add/remove/update), 6 list getters returning direct references, and 8 finder methods (findById for all 6 types, findByName for Player/Hero/Team). Null-safe handling on name-based lookups. Update methods iterate by index and replace; remove methods use find-then-remove pattern. No business logic — pure storage facade per plan.md.
+
+Claude also explained the Main wiring pattern: create one DataManager instance, populate via DataInitializer, then inject the same dm reference into all domain services via constructor injection. No singleton needed.
+
+Compiled successfully with no errors.
+
+### My Decision
+- **Accepted**: All DataManager design — instance fields, empty constructor, 18 CRUD methods, 8 finders, direct list getters.
+- **Accepted**: Main wiring pattern — single instance, constructor injection into services.
+- **Rejected**: Nothing.
+
+### Related Git Commit
+(aa4cf4a)
