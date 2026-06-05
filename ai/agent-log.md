@@ -53,3 +53,11 @@
 **Human decision:** Accepted all code. Compiled successfully.
 
 **Related commits:** (bfb0c05)
+
+## Implementation Agent - MatchRecord class
+
+**Main contribution:** Wrote the MatchRecord class and MatchResult enum. Flagged int winnerTeamId vs MatchResult enum discrepancy and resolved via AskUserQuestion. Team-match-only design with result from team A's perspective. Defensive copies for playerHeroPicks map, ID-based equals/hashCode/toString.
+
+**Human decision:** Accepted MatchResult enum and all MatchRecord design. Both files compile successfully.
+
+**Related commits:** (稍后填写)

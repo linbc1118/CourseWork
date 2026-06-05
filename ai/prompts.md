@@ -272,7 +272,7 @@ Claude wrote `src/model/Equipment.java` with 3 fields (id, name, usageCount), co
 
 ## Prompt 007
 
-**Time:** (实际时间)
+**Time:** 2026-06-05 23:58
 **Tool/Model:** Claude Code (Deepseek V4 Pro)
 **Agent Role:** Implementation Agent
 **Related Commit:** (bfb0c05)
@@ -306,3 +306,50 @@ Claude wrote `src/model/Team.java` with 3 fields (id, name, playerIds as List<In
 
 ### Related Git Commit
 (bfb0c05)
+
+---
+
+## Prompt 008
+
+**Time:** (实际时间)
+**Tool/Model:** Claude Code (Deepseek V4 Pro)
+**Agent Role:** Implementation Agent
+**Related Commit:** (稍后填写)
+
+### My Prompt
+You are acting as an Implementation Agent. Write the MatchRecord class.
+
+Package: model
+
+Attributes (private):
+- int id
+- int teamAId
+- int teamBId
+- LocalDate date
+- int winnerTeamId (-1 for draw)
+- Map<Integer, Integer> playerHeroPicks (key: playerId, value: heroId)
+
+Constructor: MatchRecord(int id, int teamAId, int teamBId, LocalDate date, int winnerTeamId, Map<Integer, Integer> playerHeroPicks)
+
+Methods:
+- Getters for all attributes (no setters needed if you want immutability, but we can provide setters for flexibility. Provide setters for simplicity.)
+
+Add import java.time.LocalDate and java.util.Map.
+
+Write the code.
+
+### AI Response Summary
+Claude flagged a conflict: the user's spec used `int winnerTeamId (-1 for draw)`, but plan.md defined `MatchResult` as an enum (WIN, LOSS, DRAW). The user confirmed via AskUserQuestion to use the enum. Claude then created two files:
+
+1. `src/model/MatchResult.java` — enum with WIN, LOSS, DRAW values.
+2. `src/model/MatchRecord.java` — 6 fields (id, teamAId, teamBId, date, result as MatchResult, playerHeroPicks as Map<Integer, Integer>). Constructor initializes playerHeroPicks with a defensive copy. Getters/setters for all fields; getPlayerHeroPicks/setPlayerHeroPicks use defensive copies. result is from team A's perspective (WIN = team A won, DRAW = tie). ID-based equals/hashCode/toString per plan.md rules. Design note in class comment acknowledges this is team-match-only scope.
+
+Both files compiled successfully.
+
+### My Decision
+- **Accepted**: MatchResult enum instead of int winnerTeamId (confirmed via AskUserQuestion).
+- **Accepted**: All MatchRecord class design — 6 fields, constructor with defensive copy, getters/setters, ID-based equals/hashCode/toString.
+- **Rejected**: int winnerTeamId — replaced by MatchResult enum per plan.md.
+
+### Related Git Commit
+(稍后填写)
