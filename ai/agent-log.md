@@ -12,4 +12,12 @@
 
 **Human decision:** Accepted all code. Verified that it compiles.
 
-**Related commits:** (will fill later)
+**Related commits:** (1213e94)
+
+## Implementation Agent - Player class
+
+**Main contribution:** Wrote the Player class extending Person. Flagged a design discrepancy (object-based Map vs ID-based Map) and resolved it via AskUserQuestion. Used Map<Integer, List<Integer>> for hero-equipment mapping per plan.md design rules. Implemented getWinRate() with division-by-zero guard, equipHero() with usage count tracking, and getRoleDisplay().
+
+**Human decision:** Accepted ID-based Map design and Integer teamId. Noted that Hero.java and Equipment.java are needed before compilation.
+
+**Related commits:** (稍后填写)
