@@ -4,4 +4,12 @@
 
 **Human decision:** Accepted the advice; will implement removeHeroFromAllPlayers() in DataManager.
 
+**Related commits:** (f227ee1)
+
+## Implementation Agent - Person class
+
+**Main contribution:** Wrote the complete Person abstract class with proper encapsulation and abstract method.
+
+**Human decision:** Accepted all code. Verified that it compiles.
+
 **Related commits:** (will fill later)
