@@ -633,7 +633,7 @@ Claude found a critical bug: `.reversed()` chained at the end of a comparator ch
 
 ## Prompt 016
 
-**Time:** (实际时间)
+**Time:** 2026-06-06 1:02
 **Tool/Model:** Claude Code (Deepseek V4 Pro)
 **Agent Role:** Implementation Agent
 **Related Commit:** (7e21de4)
@@ -660,3 +660,33 @@ Claude wrote `src/util/InputHelper.java` with a static Scanner and four methods:
 
 ### Related Git Commit
 (7e21de4)
+
+---
+
+## Prompt 017
+
+**Time:** (实际时间)
+**Tool/Model:** Claude Code (Deepseek V4 Pro)
+**Agent Role:** Implementation Agent
+**Related Commit:** (稍后填写)
+
+### My Prompt
+You are acting as an Implementation Agent. I need a MenuView class that handles the login loop and dispatches to PlayerView or AdminView.
+
+Package: ui
+
+Constructor: MenuView(DataManager dm, AuthenticationService auth, SearchService search, RankingService ranking, MatchHistoryService matchHistory)
+
+Method: public void start() — display welcome, loop login (username/password, 'exit' to quit), on success dispatch to AdminView.showMenu() or PlayerView.showMenu(), on failure print "Invalid credentials". Use InputHelper.
+
+Do not implement PlayerView or AdminView yet; just reference them.
+
+### AI Response Summary
+Claude wrote `src/ui/MenuView.java` with constructor injection of all 5 services. start() displays banner, loops with InputHelper.readString() for username/password, checks "exit" for quit, calls auth.login(), dispatches to AdminView or PlayerView based on auth.isAdmin(). After sub-view returns (logout), loops back to login. Removed unused Admin import. Compilation fails with 4 errors only due to missing AdminView/PlayerView — MenuView itself is correct.
+
+### My Decision
+- **Accepted**: All MenuView design — login loop, exit condition, role-based dispatch, logout returns to login.
+- **Note**: Won't compile until AdminView and PlayerView are implemented.
+
+### Related Git Commit
+(稍后填写)

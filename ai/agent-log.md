@@ -127,3 +127,11 @@ Recommended fix: use `thenComparing(Comparator.comparingInt(...).reversed())` in
 **Human decision:** Accepted all code. Compiled successfully.
 
 **Related commits:** (7e21de4)
+
+## Implementation Agent - MenuView class
+
+**Main contribution:** Wrote the MenuView class (main UI entry point). Login loop with exit condition, role-based dispatch to AdminView/PlayerView, logout returns to login screen. Uses InputHelper for input and constructor injection for all 5 services.
+
+**Human decision:** Accepted all code. Will compile once AdminView and PlayerView are implemented.
+
+**Related commits:** (稍后填写)
