@@ -118,4 +118,4 @@ Recommended fix: use `thenComparing(Comparator.comparingInt(...).reversed())` in
 
 **Human decision:** Accepted all fixes. Applied: fixed .reversed() chaining bug in all 3 comparators, removed unused Collectors import, added null guard + IllegalArgumentException for unknown metric, added negative topN guard, wrapped subList result in new ArrayList to prevent serialization issues.
 
-**Related commits:** (稍后填写)
+**Related commits:** (39d4f97)

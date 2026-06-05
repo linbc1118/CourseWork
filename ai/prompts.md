@@ -604,7 +604,7 @@ Claude wrote `src/service/MatchHistoryService.java` with getLastNMatchesForPlaye
 **Time:** (实际时间)
 **Tool/Model:** Claude Code (Deepseek V4 Pro)
 **Agent Role:** Testing/Reviewer Agent
-**Related Commit:** (稍后填写)
+**Related Commit:** (39d4f97)
 
 ### My Prompt
 You are acting as a Testing/Reviewer Agent. Please review my RankingService class (code below). Check for:
@@ -627,4 +627,4 @@ Claude found a critical bug: `.reversed()` chained at the end of a comparator ch
 - **Rejected**: Nothing — all 4 fixes applied.
 
 ### Related Git Commit
-(稍后填写)
+(39d4f97)
