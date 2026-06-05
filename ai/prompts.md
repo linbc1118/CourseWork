@@ -668,7 +668,7 @@ Claude wrote `src/util/InputHelper.java` with a static Scanner and four methods:
 **Time:** (实际时间)
 **Tool/Model:** Claude Code (Deepseek V4 Pro)
 **Agent Role:** Implementation Agent
-**Related Commit:** (稍后填写)
+**Related Commit:** (eec4606)
 
 ### My Prompt
 You are acting as an Implementation Agent. I need a MenuView class that handles the login loop and dispatches to PlayerView or AdminView.
@@ -689,4 +689,4 @@ Claude wrote `src/ui/MenuView.java` with constructor injection of all 5 services
 - **Note**: Won't compile until AdminView and PlayerView are implemented.
 
 ### Related Git Commit
-(稍后填写)
+(eec4606)
