@@ -93,3 +93,11 @@
 **Human decision:** Accepted all code. Compiled successfully.
 
 **Related commits:** (da0cabd)
+
+## Implementation Agent - RankingService class
+
+**Main contribution:** Wrote the RankingService class with equipment ranking by usage count and player leaderboards by winRate/level/matches. Uses Comparator chain with two-level tie-breaking per plan.md design rules. Returns topN results via subList.
+
+**Human decision:** Accepted all code. Compiled successfully.
+
+**Related commits:** (稍后填写)

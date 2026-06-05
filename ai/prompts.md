@@ -510,7 +510,7 @@ Claude also provided usage examples showing admin login with "admin"/"admin123" 
 
 ## Prompt 012
 
-**Time:** (实际时间)
+**Time:** 2026-06-06 00:45
 **Tool/Model:** Claude Code (Deepseek V4 Pro)
 **Agent Role:** Implementation Agent
 **Related Commit:** (da0cabd)
@@ -538,3 +538,32 @@ Claude wrote `src/service/SearchService.java` with three search methods and a pr
 
 ### Related Git Commit
 (da0cabd)
+
+---
+
+## Prompt 013
+
+**Time:** (实际时间)
+**Tool/Model:** Claude Code (Deepseek V4 Pro)
+**Agent Role:** Implementation Agent
+**Related Commit:** (稍后填写)
+
+### My Prompt
+You are acting as an Implementation Agent. I need a RankingService class.
+
+Package: service
+Constructor: RankingService(DataManager dataManager)
+
+Methods:
+1. public List<Equipment> getEquipmentRankingByUsageCount() — sort by usageCount desc, ties by id asc.
+2. public List<Player> getPlayerLeaderboard(String metric, int topN) — metric: "winRate"/"level"/"matches". Sort by metric desc with tie-breaking (winRate->level->id, level->winRate->id, matches->winRate->id). Return first topN.
+
+### AI Response Summary
+Claude wrote `src/service/RankingService.java` with getEquipmentRankingByUsageCount() sorting equipment by usageCount desc (ties by id asc) and getPlayerLeaderboard(metric, topN) using a switch on metric string with three private Comparator methods (byWinRate, byLevel, byMatches) implementing two-level tie-breaking per plan.md. Uses Comparator.comparingInt/Double.reversed().thenComparing chain. Returns subList(0, min(topN, size)). Compiled successfully.
+
+### My Decision
+- **Accepted**: All RankingService design — Comparator-based sorting, tie-breaking rules, topN limiting.
+- **Rejected**: Nothing.
+
+### Related Git Commit
+(稍后填写)
