@@ -135,3 +135,11 @@ Recommended fix: use `thenComparing(Comparator.comparingInt(...).reversed())` in
 **Human decision:** Accepted all code. Will compile once AdminView and PlayerView are implemented.
 
 **Related commits:** (eec4606)
+
+## Implementation Agent - PlayerView class
+
+**Main contribution:** Wrote the PlayerView class with 9 fully implemented menu options. Profile display, hero/equipment listing with ID-to-name resolution, match history with formatting, hero/team search, equipment ranking, leaderboard with metric selection, and password editing. Looping menu with InputHelper and logout.
+
+**Human decision:** Accepted all code. Compiled successfully.
+
+**Related commits:** (稍后填写)
