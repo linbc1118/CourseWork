@@ -475,7 +475,7 @@ The file was later moved from src/service/ to src/util/ to match plan.md Section
 **Time:** (实际时间)
 **Tool/Model:** Claude Code (Deepseek V4 Pro)
 **Agent Role:** Implementation Agent
-**Related Commit:** (稍后填写)
+**Related Commit:** (29b1027)
 
 ### My Prompt
 You are acting as an Implementation Agent. I need an AuthenticationService class.
@@ -503,4 +503,4 @@ Claude also provided usage examples showing admin login with "admin"/"admin123" 
 - **Rejected**: Nothing.
 
 ### Related Git Commit
-(稍后填写)
+(29b1027)
