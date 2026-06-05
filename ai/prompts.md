@@ -146,3 +146,37 @@ Compilation failed with 2 errors — both "cannot find symbol" for Hero and Equi
 
 ### Related Git Commit
 (2025141)
+
+---
+
+## Prompt 004
+
+**Time:** 2026-06-05 23:55
+**Tool/Model:** Claude Code (Deepseek V4 Pro)
+**Agent Role:** Implementation Agent
+**Related Commit:** (稍后填写)
+
+### My Prompt
+You are acting as an Implementation Agent. Write Admin class that extends Person.
+
+Package: model
+
+Constructor: Admin(int id, String name, String username, String password)
+
+Override getRoleDisplay() to return "Admin".
+
+No extra attributes needed.
+
+Write the code.
+
+### AI Response Summary
+Claude wrote `src/model/Admin.java` — a minimal class extending Person. The constructor calls `super(id, name, username, password, Role.ADMIN)` to hardcode the admin role. Overrides `getRoleDisplay()` returning "Admin" and `toString()` with an ID-based summary. No extra fields needed since the role distinction alone provides full system access.
+
+An em-dash character in a comment caused a GBK encoding error during compilation; fixed by replacing it with a semicolon. Compiled successfully afterward.
+
+### My Decision
+- **Accepted**: All code as written. Class is minimal, clean, compiles successfully.
+- **Rejected**: Nothing.
+
+### Related Git Commit
+(稍后填写)

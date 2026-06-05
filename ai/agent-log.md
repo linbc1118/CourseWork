@@ -21,3 +21,11 @@
 **Human decision:** Accepted ID-based Map design and Integer teamId. Noted that Hero.java and Equipment.java are needed before compilation.
 
 **Related commits:** (2025141)
+
+## Implementation Agent - Admin class
+
+**Main contribution:** Wrote the Admin class extending Person. Minimal implementation — constructor hardcodes Role.ADMIN, overrides getRoleDisplay() returning "Admin". No extra fields needed.
+
+**Human decision:** Accepted all code. Verified that it compiles.
+
+**Related commits:** (稍后填写)
