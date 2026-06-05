@@ -413,3 +413,57 @@ Compiled successfully with no errors.
 
 ### Related Git Commit
 (aa4cf4a)
+
+---
+
+## Prompt 010
+
+**Time:** 2026-06-06 00:28
+**Tool/Model:** Claude Code (Deepseek V4 Pro)
+**Agent Role:** Implementation Agent
+**Related Commit:** (37ca0e4)
+
+### My Prompt
+You are acting as an Implementation Agent. I need a DataInitializer class that creates hardcoded test data meeting the coursework minimum requirements:
+
+- Players: at least 10
+- Heroes: at least 15
+- Equipment: at least 20
+- Teams: at least 3
+- Match records: at least 10
+
+Additionally, establish the following relationships:
+- Each player must own at least 2-3 heroes (add them to player's heroEquipmentMap, initially with empty equipment list).
+- Each player may belong to a team (set teamId). Distribute players among teams.
+- For each hero, define a list of compatible equipment IDs (at least 2-3 compatible equipment per hero).
+- For each match record, record which players picked which heroes (playerHeroPicks map).
+
+Data details:
+- Heroes: include names like "Li Bai", "Diao Chan", "Luban No.7" ... (at least 15).
+- Equipment: include names like "Shadow Blade", "Endless Battle" ... (at least 20).
+- Players: create players with usernames "player1" to "player10", passwords "pass1" etc. Levels between 10-50.
+- Admins: at least one admin (username "admin", password "admin123").
+
+The DataInitializer class should have a public static void initialize(DataManager dm) method.
+
+Make sure to use existing classes, assign heroes with empty equipment lists, assign compatible equipment, create teams with playerIds, and create match records with valid data.
+
+Write the complete code with comments.
+
+### AI Response Summary
+Claude wrote `src/service/DataInitializer.java` (later moved to `src/util/` per plan.md) with ~220 lines. The `initialize(dm)` method populates all 6 collections: 1 admin, 10 players (levels 25-50, win counts 20-100), 15 heroes spanning all 6 HeroTypes with base stats, 20 equipment items, 3 teams (Dragon/Tiger/Eagle) with distributed membership, and 10 match records spanning Jan-Sep 2025 with WIN/LOSS/DRAW results and complete playerHeroPicks maps.
+
+Relationships: each player gets 2-3 heroes (empty equipment lists in heroEquipmentMap), each hero gets 2-3 compatible equipment IDs, team membership is synced bidirectionally (both Team.playerIds and Player.teamId), and match records include full hero pick data.
+
+Helper methods: makeStats(), makePicks(), setPlayerTeam(), addHeroToPlayer(), addEquipToHero(). Compiled successfully.
+
+The file was later moved from src/service/ to src/util/ to match plan.md Section 4.4.
+
+### My Decision
+- **Accepted**: All seed data — 10 players, 15 heroes, 20 equipment, 3 teams, 10 matches.
+- **Accepted**: All relationships — hero ownership, equipment compatibility, team membership, match picks.
+- **Accepted**: File location corrected from src/service/ to src/util/ per plan.md.
+- **Rejected**: Nothing.
+
+### Related Git Commit
+(37ca0e4)
