@@ -467,3 +467,40 @@ The file was later moved from src/service/ to src/util/ to match plan.md Section
 
 ### Related Git Commit
 (37ca0e4)
+
+---
+
+## Prompt 011
+
+**Time:** (实际时间)
+**Tool/Model:** Claude Code (Deepseek V4 Pro)
+**Agent Role:** Implementation Agent
+**Related Commit:** (稍后填写)
+
+### My Prompt
+You are acting as an Implementation Agent. I need an AuthenticationService class.
+
+Package: service
+
+Responsibilities:
+- Store the currently logged-in user (Person) as a private field.
+- Constructor: AuthenticationService(DataManager dataManager)
+- Method: public boolean login(String username, String password) — iterate through all players and admins, match credentials, set currentUser.
+- Method: public void logout() — set currentUser to null.
+- Method: public Person getCurrentUser()
+- Method: public boolean isAdmin() — return true if currentUser is instance of Admin.
+- Method: public boolean isLoggedIn() — return currentUser != null.
+
+Do not write any UI or menu code here. Just the service. Assume DataManager has methods getAllPlayers() and getAllAdmins().
+
+### AI Response Summary
+Claude wrote `src/service/AuthenticationService.java` with DataManager reference and currentUser field. The login() method searches admins first (priority), then players, matching username and password. logout() sets currentUser to null. getCurrentUser(), isAdmin() (instanceof check), and isLoggedIn() provide session state. Used actual DataManager method names (getPlayers(), getAdmins()) instead of the spec's getAllXxx() names. Compiled successfully.
+
+Claude also provided usage examples showing admin login with "admin"/"admin123" and player login with "player1"/"pass1".
+
+### My Decision
+- **Accepted**: All AuthenticationService design — constructor injection, admin-first login search, session management.
+- **Rejected**: Nothing.
+
+### Related Git Commit
+(稍后填写)
