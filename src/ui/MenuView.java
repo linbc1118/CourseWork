@@ -77,7 +77,7 @@ public class MenuView {
                     AdminView adminView = new AdminView(dm, auth, search, ranking, matchHistory);
                     adminView.showMenu();
                 } else {
-                    PlayerView playerView = new PlayerView(auth.getCurrentUser(), dm, auth, search,
+                    PlayerView playerView = new PlayerView((model.Player) auth.getCurrentUser(), dm, auth, search,
                             ranking, matchHistory);
                     playerView.showMenu();
                 }

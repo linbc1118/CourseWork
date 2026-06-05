@@ -166,4 +166,12 @@ Recommended fix: use `thenComparing(Comparator.comparingInt(...).reversed())` in
 
 **Human decision:** Accepted.
 
+**Related commits:** (fab175d)
+
+## Implementation Agent - AdminView class
+
+**Main contribution:** Wrote the complete AdminView class with 31 methods covering full CRUD for all 5 entity types plus public info viewing. Cascade handling on delete (team members, player teamId). Ownership prevention check when deleting heroes. Interactive match record creation with hero picks input.
+
+**Human decision:** Accepted all code. Full project compiles and runs.
+
 **Related commits:** (稍后填写)
