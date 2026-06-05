@@ -102,10 +102,41 @@ public class PlayerView {
         if (currentPlayer.getTeamId() != null) {
             model.Team team = dm.findTeamById(currentPlayer.getTeamId());
             if (team != null) {
-                System.out.println("Team: " + team.getName());
+                System.out.println("Team: " + team.getName()
+                        + " (" + team.getPlayerIds().size() + " members)");
+            } else {
+                System.out.println("Team: (team not found)");
             }
         } else {
             System.out.println("Team: (none)");
+        }
+
+        // Show owned heroes and their equipment
+        System.out.println();
+        System.out.println("--- Owned Heroes and Equipment ---");
+        if (currentPlayer.getHeroEquipmentMap().isEmpty()) {
+            System.out.println("You don't own any heroes yet.");
+        } else {
+            int heroIndex = 1;
+            for (Integer heroId : currentPlayer.getHeroEquipmentMap().keySet()) {
+                model.Hero hero = dm.findHeroById(heroId);
+                String heroName = (hero != null) ? hero.getName() : "Hero #" + heroId;
+                String heroType = (hero != null) ? " (" + hero.getType() + ")" : "";
+                System.out.println(heroIndex + ". " + heroName + heroType);
+
+                // Show equipped items for this hero
+                java.util.List<Integer> equipIds = currentPlayer.getHeroEquipmentMap().get(heroId);
+                if (equipIds.isEmpty()) {
+                    System.out.println("   Equipment: (none)");
+                } else {
+                    for (int equipId : equipIds) {
+                        model.Equipment eq = dm.findEquipmentById(equipId);
+                        String eqName = (eq != null) ? eq.getName() : "Equipment #" + equipId;
+                        System.out.println("   - " + eqName);
+                    }
+                }
+                heroIndex++;
+            }
         }
     }
 
@@ -151,7 +182,7 @@ public class PlayerView {
         }
     }
 
-    /** Searches for a hero by name and shows public info. */
+    /** Searches for a hero by name and shows public info including owners. */
     private void searchHero() {
         System.out.println("--- Search Hero ---");
         String name = InputHelper.readNonEmptyString("Enter hero name: ");
@@ -162,11 +193,33 @@ public class PlayerView {
             System.out.println("Hero: " + hero.getName());
             System.out.println("Type: " + hero.getType());
             System.out.println("Stats: " + hero.getBaseStats());
-            System.out.println("Compatible Equipment: ");
-            for (int equipId : hero.getCompatibleEquipmentIds()) {
-                model.Equipment eq = dm.findEquipmentById(equipId);
-                String eqName = (eq != null) ? eq.getName() : "Equipment #" + equipId;
-                System.out.println("  - " + eqName);
+
+            // Compatible equipment
+            System.out.println("Compatible Equipment:");
+            if (hero.getCompatibleEquipmentIds().isEmpty()) {
+                System.out.println("  (none)");
+            } else {
+                for (int equipId : hero.getCompatibleEquipmentIds()) {
+                    model.Equipment eq = dm.findEquipmentById(equipId);
+                    String eqName = (eq != null) ? eq.getName() : "Equipment #" + equipId;
+                    System.out.println("  - " + eqName);
+                }
+            }
+
+            // Find all players who own this hero
+            System.out.println("Owners:");
+            java.util.List<String> owners = new java.util.ArrayList<>();
+            for (Player p : dm.getPlayers()) {
+                if (p.getHeroEquipmentMap().containsKey(hero.getId())) {
+                    owners.add(p.getName());
+                }
+            }
+            if (owners.isEmpty()) {
+                System.out.println("  No players own this hero.");
+            } else {
+                for (String ownerName : owners) {
+                    System.out.println("  - " + ownerName);
+                }
             }
         }
     }

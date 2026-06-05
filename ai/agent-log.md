@@ -143,3 +143,11 @@ Recommended fix: use `thenComparing(Comparator.comparingInt(...).reversed())` in
 **Human decision:** Accepted all code. Compiled successfully.
 
 **Related commits:** (ae63331)
+
+## Implementation Agent - PlayerView.searchHero() enhancement
+
+**Main contribution:** Added owners list to hero search. Iterates all players checking heroEquipmentMap for the searched hero ID.
+
+**Human decision:** Accepted.
+
+**Related commits:** (稍后填写)

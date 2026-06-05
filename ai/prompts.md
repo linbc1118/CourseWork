@@ -695,7 +695,7 @@ Claude wrote `src/ui/MenuView.java` with constructor injection of all 5 services
 
 ## Prompt 018
 
-**Time:** (实际时间)
+**Time:** 2026-06-06 1:07
 **Tool/Model:** Claude Code (Deepseek V4 Pro)
 **Agent Role:** Implementation Agent
 **Related Commit:** (ae63331)
@@ -720,3 +720,25 @@ Claude wrote `src/ui/PlayerView.java` with all 9 menu options fully implemented 
 
 ### Related Git Commit
 (ae63331)
+
+---
+
+## Prompt 019
+
+**Time:** (实际时间)
+**Tool/Model:** Claude Code (Deepseek V4 Pro)
+**Agent Role:** Implementation Agent
+**Related Commit:** (稍后填写)
+
+### My Prompt
+Enhance PlayerView.searchHero() to also show a list of players who own this hero. Iterate dm.getPlayers() and check heroEquipmentMap.containsKey(heroId).
+
+### AI Response Summary
+Enhanced searchHero() to iterate all players and collect names where heroEquipmentMap contains the searched hero's ID. Displays owners list or "No players own this hero." if empty. Also added empty-state handling for compatible equipment list.
+
+### My Decision
+- **Accepted**: Owners list display in hero search.
+- **Rejected**: Nothing.
+
+### Related Git Commit
+(稍后填写)
