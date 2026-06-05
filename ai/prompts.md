@@ -180,3 +180,52 @@ An em-dash character in a comment caused a GBK encoding error during compilation
 
 ### Related Git Commit
 (5ee23bc)
+
+---
+
+## Prompt 005
+
+**Time:** 2026-06-06 00:10
+**Tool/Model:** Claude Code (Deepseek V4 Pro)
+**Agent Role:** Implementation Agent
+**Related Commit:** (稍后填写)
+
+### My Prompt
+You are acting as an Implementation Agent. Write the Hero class.
+
+Package: model
+
+Attributes (private):
+- int id
+- String name
+- String type (e.g., "Assassin", "Mage", "Tank")
+- Map<String, Integer> baseStats (e.g., "attack": 85, "defense": 70)
+- List<Integer> compatibleEquipmentIds (list of equipment IDs that this hero can use)
+
+Constructor: Hero(int id, String name, String type, Map<String, Integer> baseStats)
+
+Methods:
+- Getters and setters for all attributes
+- addCompatibleEquipment(int equipmentId)
+- getCompatibleEquipmentIds()
+
+Add comments.
+
+Write the code.
+
+### AI Response Summary
+Claude flagged a discrepancy: the user's spec used `String type`, but plan.md defined `HeroType` as an enum (MAGE, ASSASSIN, TANK, WARRIOR, MARKSMAN, SUPPORT). The user confirmed via AskUserQuestion to use the enum. Claude then created two files:
+
+1. `src/model/HeroType.java` — enum with 6 values covering all Honor of Kings hero classes.
+2. `src/model/Hero.java` — 5 fields (id, name, type as HeroType, baseStats as Map<String, Integer>, compatibleEquipmentIds as List<Integer>). Constructor initializes stats with a defensive copy and equipment list as empty ArrayList. `getBaseStats()`/`setBaseStats()` use defensive copies. `addCompatibleEquipment()` prevents duplicates. ID-based equals/hashCode/toString per plan.md rules.
+
+Both files compiled successfully with no errors.
+
+### My Decision
+- **Accepted**: HeroType enum instead of String type (confirmed via AskUserQuestion).
+- **Accepted**: All Hero class design — 5 fields, defensive copies for baseStats, duplicate prevention in addCompatibleEquipment().
+- **Accepted**: ID-based equals/hashCode/toString following plan.md design rules.
+- **Rejected**: Nothing.
+
+### Related Git Commit
+(稍后填写)

@@ -29,3 +29,11 @@
 **Human decision:** Accepted all code. Verified that it compiles.
 
 **Related commits:** (5ee23bc)
+
+## Implementation Agent - Hero class
+
+**Main contribution:** Wrote the Hero class and HeroType enum. Flagged String type vs HeroType enum discrepancy and resolved via AskUserQuestion. Hero class includes defensive copies for baseStats map, duplicate prevention in addCompatibleEquipment(), and ID-based equals/hashCode/toString.
+
+**Human decision:** Accepted HeroType enum and all Hero class design. Both files compile successfully.
+
+**Related commits:** (稍后填写)
