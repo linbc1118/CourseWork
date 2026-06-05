@@ -36,4 +36,4 @@
 
 **Human decision:** Accepted HeroType enum and all Hero class design. Both files compile successfully.
 
-**Related commits:** (稍后填写)
+**Related commits:** (34c7b60)
