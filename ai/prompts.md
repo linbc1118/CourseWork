@@ -636,7 +636,7 @@ Claude found a critical bug: `.reversed()` chained at the end of a comparator ch
 **Time:** (实际时间)
 **Tool/Model:** Claude Code (Deepseek V4 Pro)
 **Agent Role:** Implementation Agent
-**Related Commit:** (稍后填写)
+**Related Commit:** (7e21de4)
 
 ### My Prompt
 You are acting as an Implementation Agent. I need an InputHelper utility class for safe console input.
@@ -659,4 +659,4 @@ Claude wrote `src/util/InputHelper.java` with a static Scanner and four methods:
 - **Rejected**: Nothing.
 
 ### Related Git Commit
-(稍后填写)
+(7e21de4)
