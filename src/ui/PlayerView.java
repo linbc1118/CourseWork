@@ -224,7 +224,7 @@ public class PlayerView {
         }
     }
 
-    /** Searches for a team by ID or name. */
+    /** Searches for a team by ID or name and shows detailed stats. */
     private void searchTeam() {
         System.out.println("--- Search Team ---");
         String input = InputHelper.readNonEmptyString("Enter team ID or name: ");
@@ -234,12 +234,47 @@ public class PlayerView {
         } else {
             System.out.println("Team: " + team.getName());
             System.out.println("ID: " + team.getId());
-            System.out.println("Member Count: " + team.getPlayerIds().size());
-            System.out.println("Members:");
+
+            // Collect member players
+            java.util.List<Player> members = new java.util.ArrayList<>();
             for (int playerId : team.getPlayerIds()) {
-                model.Player p = dm.findPlayerById(playerId);
-                String pName = (p != null) ? p.getName() : "Player #" + playerId;
-                System.out.println("  - " + pName);
+                Player p = dm.findPlayerById(playerId);
+                if (p != null) members.add(p);
+            }
+
+            // Compute team stats
+            if (!members.isEmpty()) {
+                double avgLevel = members.stream().mapToInt(Player::getLevel).average().orElse(0.0);
+                int totalMatches = members.stream().mapToInt(Player::getTotalMatches).sum();
+                int totalWins = members.stream().mapToInt(Player::getWins).sum();
+                double teamWinRate = totalMatches > 0
+                        ? (double) totalWins / totalMatches * 100.0 : 0.0;
+
+                // Top player: highest win rate, tie by level, then by ID
+                Player topPlayer = members.stream()
+                        .max(java.util.Comparator
+                                .comparingDouble(Player::getWinRate)
+                                .thenComparingInt(Player::getLevel)
+                                .thenComparingInt(Player::getId))
+                        .orElse(null);
+
+                System.out.println("Member Count: " + members.size());
+                System.out.printf("Average Level: %.1f%n", avgLevel);
+                System.out.println("Total Matches: " + totalMatches);
+                System.out.printf("Team Win Rate: %.1f%%%n", teamWinRate);
+                if (topPlayer != null) {
+                    System.out.println("Top Player: " + topPlayer.getName()
+                            + " (Win Rate: " + String.format("%.1f%%", topPlayer.getWinRate())
+                            + ", Level: " + topPlayer.getLevel() + ")");
+                }
+            }
+
+            // List all members
+            System.out.println("Members:");
+            for (Player p : members) {
+                System.out.println("  - " + p.getName()
+                        + " | Level: " + p.getLevel()
+                        + " | Win Rate: " + String.format("%.1f%%", p.getWinRate()));
             }
         }
     }

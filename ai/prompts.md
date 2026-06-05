@@ -728,7 +728,7 @@ Claude wrote `src/ui/PlayerView.java` with all 9 menu options fully implemented 
 **Time:** (实际时间)
 **Tool/Model:** Claude Code (Deepseek V4 Pro)
 **Agent Role:** Implementation Agent
-**Related Commit:** (稍后填写)
+**Related Commit:** (bb3a04f)
 
 ### My Prompt
 Enhance PlayerView.searchHero() to also show a list of players who own this hero. Iterate dm.getPlayers() and check heroEquipmentMap.containsKey(heroId).
@@ -738,6 +738,28 @@ Enhanced searchHero() to iterate all players and collect names where heroEquipme
 
 ### My Decision
 - **Accepted**: Owners list display in hero search.
+- **Rejected**: Nothing.
+
+### Related Git Commit
+(bb3a04f)
+
+---
+
+## Prompt 020
+
+**Time:** (实际时间)
+**Tool/Model:** Claude Code (Deepseek V4 Pro)
+**Agent Role:** Implementation Agent
+**Related Commit:** (稍后填写)
+
+### My Prompt
+Enhance PlayerView.searchTeam() to show: average level, total matches, win rate, top player (highest win rate, tie by level then ID). Use streams for computation.
+
+### AI Response Summary
+Enhanced searchTeam() to compute team stats from members: average level via stream averaging, totalMatches and totalWins via sum, team win rate as totalWins/totalMatches*100. Top player found via stream max with Comparator chain (winRate -> level -> id). Displays all stats plus formatted member list with individual win rates.
+
+### My Decision
+- **Accepted**: Team stats computation and top player logic.
 - **Rejected**: Nothing.
 
 ### Related Git Commit

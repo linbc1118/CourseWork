@@ -150,4 +150,12 @@ Recommended fix: use `thenComparing(Comparator.comparingInt(...).reversed())` in
 
 **Human decision:** Accepted.
 
+**Related commits:** (bb3a04f)
+
+## Implementation Agent - PlayerView.searchTeam() enhancement
+
+**Main contribution:** Enhanced team search with computed stats: average level, total matches, team win rate, and top player via stream max comparator.
+
+**Human decision:** Accepted.
+
 **Related commits:** (稍后填写)
