@@ -106,16 +106,21 @@ public class AdminView {
 
     private void addPlayer() {
         System.out.println("--- Add Player ---");
-        int id = InputHelper.readInt("New ID: ");
+        // Auto-generate ID: max existing ID + 1 (or 1 if no players)
+        int newId = 1;
+        for (Player p : dm.getPlayers()) {
+            if (p.getId() >= newId) newId = p.getId() + 1;
+        }
+        System.out.println("New ID (auto): " + newId);
         String name = InputHelper.readNonEmptyString("Name: ");
         String username = InputHelper.readNonEmptyString("Username: ");
         String password = InputHelper.readNonEmptyString("Password: ");
         int level = InputHelper.readIntInRange("Level (1-100): ", 1, 100);
         int matches = InputHelper.readIntInRange("Total Matches (0-10000): ", 0, 10000);
         int wins = InputHelper.readIntInRange("Wins (0-" + matches + "): ", 0, matches);
-        Player p = new Player(id, name, username, password, level, matches, wins);
+        Player p = new Player(newId, name, username, password, level, matches, wins);
         dm.addPlayer(p);
-        System.out.println("Player added: " + p.getName());
+        System.out.println("Player added: " + p.getName() + " (ID: " + newId + ")");
     }
 
     private void editPlayer() {

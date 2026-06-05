@@ -791,7 +791,7 @@ Limited display to top 10 via Math.min(10, size). Added empty-state message. Com
 
 ## Prompt 022
 
-**Time:** (实际时间)
+**Time:** 2026-06-06 1:18
 **Tool/Model:** Claude Code (Deepseek V4 Pro)
 **Agent Role:** Implementation Agent
 **Related Commit:** (abd058b)
@@ -811,3 +811,25 @@ Also fixed MenuView Person->Player cast bug. Full project compiles and runs succ
 
 ### Related Git Commit
 (abd058b)
+
+---
+
+## Prompt 023
+
+**Time:** (实际时间)
+**Tool/Model:** Claude Code (Deepseek V4 Pro)
+**Agent Role:** Implementation Agent
+**Related Commit:** (稍后填写)
+
+### My Prompt
+Implement the addPlayer method in AdminView. Prompt for name, username, password, level, totalMatches, wins. Create a new Player with a new unique ID (find max existing id + 1). Add to DataManager using dm.addPlayer(). Show success message.
+
+### AI Response Summary
+Enhanced AdminView.addPlayer() to auto-generate unique ID by finding max existing player ID + 1. Displays auto-generated ID to admin. Removed manual ID input prompt. Also updated Main.java to wire MenuView properly with all services.
+
+### My Decision
+- **Accepted**: Auto-ID generation, Main wiring update.
+- **Rejected**: Nothing.
+
+### Related Git Commit
+(稍后填写)

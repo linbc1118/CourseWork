@@ -175,3 +175,11 @@ Recommended fix: use `thenComparing(Comparator.comparingInt(...).reversed())` in
 **Human decision:** Accepted all code. Full project compiles and runs.
 
 **Related commits:** (abd058b)
+
+## Implementation Agent - AdminView.addPlayer() auto-ID
+
+**Main contribution:** Enhanced addPlayer() to auto-generate unique ID (max + 1). Updated Main.java with proper MenuView wiring.
+
+**Human decision:** Accepted.
+
+**Related commits:** (稍后填写)
