@@ -109,3 +109,13 @@
 **Human decision:** Accepted all code. Compiled successfully.
 
 **Related commits:** (7364f04)
+
+## Testing/Reviewer Agent - RankingService
+
+**Main contribution:** Reviewed RankingService sorting and tie-breaking logic. Found a critical bug: `.reversed()` at the end of a comparator chain reverses the entire chain, not just the last `thenComparing`. In `byWinRate()`, this causes winRate to sort ASC instead of DESC when tie-breaking on level. Same issue in `byLevel()` and `byMatches()`. Also noted: unused `java.util.stream.Collectors` import, default switch branch silently returning unsorted results (should throw or log), and missing null/negative guard for topN.
+
+Recommended fix: use `thenComparing(Comparator.comparingInt(...).reversed())` instead of chaining `.reversed()` on the whole chain.
+
+**Human decision:** (待填写)
+
+**Related commits:** (稍后填写)
