@@ -101,3 +101,11 @@
 **Human decision:** Accepted all code. Compiled successfully.
 
 **Related commits:** (0a0df4d)
+
+## Implementation Agent - MatchHistoryService class
+
+**Main contribution:** Wrote the MatchHistoryService class with player/team match history lookup and formatting. Filters by playerHeroPicks key presence for players, teamAId/teamBId for teams. Sorts by date descending with subList limiting. formatMatchRecord() resolves IDs to names for readable output.
+
+**Human decision:** Accepted all code. Compiled successfully.
+
+**Related commits:** (稍后填写)

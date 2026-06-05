@@ -543,7 +543,7 @@ Claude wrote `src/service/SearchService.java` with three search methods and a pr
 
 ## Prompt 013
 
-**Time:** (实际时间)
+**Time:** 2026-06-06 00:48
 **Tool/Model:** Claude Code (Deepseek V4 Pro)
 **Agent Role:** Implementation Agent
 **Related Commit:** (0a0df4d)
@@ -567,3 +567,32 @@ Claude wrote `src/service/RankingService.java` with getEquipmentRankingByUsageCo
 
 ### Related Git Commit
 (0a0df4d)
+
+---
+
+## Prompt 014
+
+**Time:** (实际时间)
+**Tool/Model:** Claude Code (Deepseek V4 Pro)
+**Agent Role:** Implementation Agent
+**Related Commit:** (稍后填写)
+
+### My Prompt
+You are acting as an Implementation Agent. I need a MatchHistoryService class.
+
+Package: service. Constructor: MatchHistoryService(DataManager dataManager).
+
+Methods:
+1. getLastNMatchesForPlayer(int playerId, int n) — filter matches where playerId is in playerHeroPicks key set, sort by date desc, take first n.
+2. getLastNMatchesForTeam(int teamId, int n) — filter by teamAId or teamBId, sort by date desc, take first n.
+3. formatMatchRecord(MatchRecord match) — readable string with date, opponent, result, hero picks (look up names from DataManager).
+
+### AI Response Summary
+Claude wrote `src/service/MatchHistoryService.java` with getLastNMatchesForPlayer() filtering matches by playerHeroPicks.containsKey(), getLastNMatchesForTeam() filtering by teamAId/teamBId, both sorting by date desc and limiting to n results. formatMatchRecord() looks up team and hero names via DataManager and formats a readable string like "2025-01-15 | Team Dragon vs Team Tiger | Team Dragon won | Picks: P1->Li Bai, ...". Compiled successfully.
+
+### My Decision
+- **Accepted**: All MatchHistoryService design — player/team filtering, date sorting, readable formatting.
+- **Rejected**: Nothing.
+
+### Related Git Commit
+(稍后填写)
