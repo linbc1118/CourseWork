@@ -37,3 +37,11 @@
 **Human decision:** Accepted HeroType enum and all Hero class design. Both files compile successfully.
 
 **Related commits:** (34c7b60)
+
+## Implementation Agent - Equipment class
+
+**Main contribution:** Wrote the Equipment class with usageCount tracking. Simple design — constructor initializes count to 0, incrementUsageCount() for Player.equipHero() integration, ID-based equals/hashCode/toString.
+
+**Human decision:** Accepted all code. Compiled successfully.
+
+**Related commits:** (稍后填写)

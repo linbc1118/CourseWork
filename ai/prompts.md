@@ -229,3 +229,41 @@ Both files compiled successfully with no errors.
 
 ### Related Git Commit
 (34c7b60)
+
+---
+
+## Prompt 006
+
+**Time:** (实际时间)
+**Tool/Model:** Claude Code (Deepseek V4 Pro)
+**Agent Role:** Implementation Agent
+**Related Commit:** (稍后填写)
+
+### My Prompt
+You are acting as an Implementation Agent. Write the Equipment class.
+
+Package: model
+
+Attributes (private):
+- int id
+- String name
+- int usageCount (initialized to 0)
+
+Constructor: Equipment(int id, String name)
+
+Methods:
+- Getters and setters (setter for usageCount is allowed, but we will use incrementUsageCount)
+- incrementUsageCount(): increments usageCount by 1
+- Optionally a method getUsageCount()
+
+Write the code.
+
+### AI Response Summary
+Claude wrote `src/model/Equipment.java` with 3 fields (id, name, usageCount), constructor initializing usageCount to 0, getters/setters for all fields, `incrementUsageCount()` method, and ID-based equals/hashCode/toString per plan.md design rules. An em-dash in a comment caused a GBK encoding error; fixed by replacing with a semicolon. Compiled successfully.
+
+### My Decision
+- **Accepted**: All code as written. Clean, minimal, compiles successfully.
+- **Rejected**: Nothing.
+
+### Related Git Commit
+(稍后填写)
