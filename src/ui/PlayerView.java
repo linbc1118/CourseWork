@@ -279,13 +279,18 @@ public class PlayerView {
         }
     }
 
-    /** Shows equipment ranking by usage count. */
+    /** Shows top 10 equipment ranking by usage count. */
     private void viewEquipmentRanking() {
-        System.out.println("--- Equipment Ranking (by Usage) ---");
-        int rank = 1;
-        for (model.Equipment eq : ranking.getEquipmentRankingByUsageCount()) {
-            System.out.println(rank + ". " + eq.getName() + " (used " + eq.getUsageCount() + " times)");
-            rank++;
+        System.out.println("--- Top 10 Equipment Ranking (by Usage) ---");
+        java.util.List<model.Equipment> allEquipment = ranking.getEquipmentRankingByUsageCount();
+        int limit = Math.min(10, allEquipment.size());
+        for (int i = 0; i < limit; i++) {
+            model.Equipment eq = allEquipment.get(i);
+            System.out.println((i + 1) + ". " + eq.getName()
+                    + " (used " + eq.getUsageCount() + " times)");
+        }
+        if (allEquipment.isEmpty()) {
+            System.out.println("No equipment data available.");
         }
     }
 

@@ -750,7 +750,7 @@ Enhanced searchHero() to iterate all players and collect names where heroEquipme
 **Time:** (实际时间)
 **Tool/Model:** Claude Code (Deepseek V4 Pro)
 **Agent Role:** Implementation Agent
-**Related Commit:** (稍后填写)
+**Related Commit:** (a7d2e64)
 
 ### My Prompt
 Enhance PlayerView.searchTeam() to show: average level, total matches, win rate, top player (highest win rate, tie by level then ID). Use streams for computation.
@@ -760,6 +760,28 @@ Enhanced searchTeam() to compute team stats from members: average level via stre
 
 ### My Decision
 - **Accepted**: Team stats computation and top player logic.
+- **Rejected**: Nothing.
+
+### Related Git Commit
+(a7d2e64)
+
+---
+
+## Prompt 021
+
+**Time:** (实际时间)
+**Tool/Model:** Claude Code (Deepseek V4 Pro)
+**Agent Role:** Implementation Agent
+**Related Commit:** (稍后填写)
+
+### My Prompt
+Enhance PlayerView.viewEquipmentRanking() to show top 10 equipment instead of all 20.
+
+### AI Response Summary
+Limited display to top 10 via Math.min(10, size). Added empty-state message. Compiled successfully.
+
+### My Decision
+- **Accepted**: Top 10 limit.
 - **Rejected**: Nothing.
 
 ### Related Git Commit
