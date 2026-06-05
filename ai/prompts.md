@@ -237,7 +237,7 @@ Both files compiled successfully with no errors.
 **Time:** (实际时间)
 **Tool/Model:** Claude Code (Deepseek V4 Pro)
 **Agent Role:** Implementation Agent
-**Related Commit:** (稍后填写)
+**Related Commit:** (f54e03c)
 
 ### My Prompt
 You are acting as an Implementation Agent. Write the Equipment class.
@@ -266,4 +266,4 @@ Claude wrote `src/model/Equipment.java` with 3 fields (id, name, usageCount), co
 - **Rejected**: Nothing.
 
 ### Related Git Commit
-(稍后填写)
+(f54e03c)
