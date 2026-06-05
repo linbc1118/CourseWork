@@ -601,7 +601,7 @@ Claude wrote `src/service/MatchHistoryService.java` with getLastNMatchesForPlaye
 
 ## Prompt 015
 
-**Time:** (实际时间)
+**Time:** 2026-06-06 00:58
 **Tool/Model:** Claude Code (Deepseek V4 Pro)
 **Agent Role:** Testing/Reviewer Agent
 **Related Commit:** (39d4f97)
@@ -628,3 +628,35 @@ Claude found a critical bug: `.reversed()` chained at the end of a comparator ch
 
 ### Related Git Commit
 (39d4f97)
+
+---
+
+## Prompt 016
+
+**Time:** (实际时间)
+**Tool/Model:** Claude Code (Deepseek V4 Pro)
+**Agent Role:** Implementation Agent
+**Related Commit:** (稍后填写)
+
+### My Prompt
+You are acting as an Implementation Agent. I need an InputHelper utility class for safe console input.
+
+Package: util
+
+Requirements:
+- public static int readInt(String prompt) — loop until valid integer
+- public static int readIntInRange(String prompt, int min, int max) — validate range
+- public static String readString(String prompt) — trim, allow empty
+- public static String readNonEmptyString(String prompt) — loop until non-empty
+
+Use a static Scanner. Write the code with comments.
+
+### AI Response Summary
+Claude wrote `src/util/InputHelper.java` with a static Scanner and four methods: readInt() catches NumberFormatException in a loop, readIntInRange() delegates to readInt then validates [min,max], readString() trims and returns (allows empty), readNonEmptyString() loops until non-empty input. Compiled successfully.
+
+### My Decision
+- **Accepted**: All methods — static Scanner reuse, infinite-loop-until-valid pattern, range validation.
+- **Rejected**: Nothing.
+
+### Related Git Commit
+(稍后填写)

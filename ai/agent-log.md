@@ -119,3 +119,11 @@ Recommended fix: use `thenComparing(Comparator.comparingInt(...).reversed())` in
 **Human decision:** Accepted all fixes. Applied: fixed .reversed() chaining bug in all 3 comparators, removed unused Collectors import, added null guard + IllegalArgumentException for unknown metric, added negative topN guard, wrapped subList result in new ArrayList to prevent serialization issues.
 
 **Related commits:** (39d4f97)
+
+## Implementation Agent - InputHelper class
+
+**Main contribution:** Wrote the InputHelper utility class with safe console input. Static Scanner reuse, loop-until-valid pattern for readInt/readIntInRange/readNonEmptyString, NumberFormatException handling, range validation.
+
+**Human decision:** Accepted all code. Compiled successfully.
+
+**Related commits:** (稍后填写)
