@@ -85,3 +85,11 @@
 **Human decision:** Accepted all code. Compiled successfully.
 
 **Related commits:** (29b1027)
+
+## Implementation Agent - SearchService class
+
+**Main contribution:** Wrote the SearchService class with case-insensitive entity lookup. searchTeamByIdOrName() uses try/catch on Integer.parseInt() for ID-or-name disambiguation. Private normalize() helper for lowercase comparison. Null-safe throughout.
+
+**Human decision:** Accepted all code. Compiled successfully.
+
+**Related commits:** (稍后填写)

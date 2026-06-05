@@ -505,3 +505,36 @@ Claude also provided usage examples showing admin login with "admin"/"admin123" 
 
 ### Related Git Commit
 (29b1027)
+
+---
+
+## Prompt 012
+
+**Time:** (实际时间)
+**Tool/Model:** Claude Code (Deepseek V4 Pro)
+**Agent Role:** Implementation Agent
+**Related Commit:** (稍后填写)
+
+### My Prompt
+You are acting as an Implementation Agent. I need a SearchService class.
+
+Package: service
+
+Constructor: SearchService(DataManager dataManager)
+
+Methods:
+- public Player searchPlayerByName(String name): case-insensitive, return first match or null.
+- public Team searchTeamByIdOrName(String input): try to parse as int for ID lookup, else name lookup.
+- public Hero searchHeroByName(String name): case-insensitive.
+
+Add a helper private method to normalize case.
+
+### AI Response Summary
+Claude wrote `src/service/SearchService.java` with three search methods and a private normalize() helper that converts to lowercase. searchTeamByIdOrName() tries Integer.parseInt() first for ID lookup, falls through to name search on NumberFormatException. All methods handle null input safely. A GBK em-dash encoding error was fixed. Compiled successfully.
+
+### My Decision
+- **Accepted**: All SearchService design — case-insensitive matching, ID-or-name disambiguation, null-safe.
+- **Rejected**: Nothing.
+
+### Related Git Commit
+(稍后填写)
