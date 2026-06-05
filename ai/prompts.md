@@ -314,7 +314,7 @@ Claude wrote `src/model/Team.java` with 3 fields (id, name, playerIds as List<In
 **Time:** (实际时间)
 **Tool/Model:** Claude Code (Deepseek V4 Pro)
 **Agent Role:** Implementation Agent
-**Related Commit:** (稍后填写)
+**Related Commit:** (311ec16)
 
 ### My Prompt
 You are acting as an Implementation Agent. Write the MatchRecord class.
@@ -352,4 +352,4 @@ Both files compiled successfully.
 - **Rejected**: int winnerTeamId — replaced by MatchResult enum per plan.md.
 
 ### Related Git Commit
-(稍后填写)
+(311ec16)
