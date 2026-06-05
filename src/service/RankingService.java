@@ -6,7 +6,6 @@ import model.Player;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Provides ranking and leaderboard functionality.
@@ -59,8 +58,13 @@ public class RankingService {
      * @param metric "winRate", "level", or "matches"
      * @param topN   maximum number of players to return
      * @return sorted list of top players
+     * @throws IllegalArgumentException if metric is null or unknown
      */
     public List<Player> getPlayerLeaderboard(String metric, int topN) {
+        if (metric == null) {
+            throw new IllegalArgumentException("metric must not be null");
+        }
+
         List<Player> sorted = new ArrayList<>(dm.getPlayers());
 
         switch (metric) {
@@ -74,24 +78,27 @@ public class RankingService {
                 sorted.sort(byMatches());
                 break;
             default:
-                // Unknown metric; return unsorted (or could throw)
-                break;
+                throw new IllegalArgumentException(
+                        "Unknown metric: " + metric + ". Supported: winRate, level, matches");
         }
 
-        // Return top N (or fewer)
-        int limit = Math.min(topN, sorted.size());
-        return sorted.subList(0, limit);
+        // Return top N (or fewer); guard against negative topN
+        int limit = Math.max(0, Math.min(topN, sorted.size()));
+        return new ArrayList<>(sorted.subList(0, limit));
     }
 
     // ========== Comparators ==========
 
     /**
      * Sort by win rate descending, then level descending, then ID ascending.
+     *
+     * Note: each thenComparing() wraps its own reversed() to avoid the bug
+     * where chaining .reversed() on the whole comparator reverses ALL levels.
      */
     private Comparator<Player> byWinRate() {
         return Comparator
                 .comparingDouble(Player::getWinRate).reversed()
-                .thenComparingInt(Player::getLevel).reversed()
+                .thenComparing(Comparator.comparingInt(Player::getLevel).reversed())
                 .thenComparingInt(Player::getId);
     }
 
@@ -101,7 +108,7 @@ public class RankingService {
     private Comparator<Player> byLevel() {
         return Comparator
                 .comparingInt(Player::getLevel).reversed()
-                .thenComparingDouble(Player::getWinRate).reversed()
+                .thenComparing(Comparator.comparingDouble(Player::getWinRate).reversed())
                 .thenComparingInt(Player::getId);
     }
 
@@ -111,7 +118,7 @@ public class RankingService {
     private Comparator<Player> byMatches() {
         return Comparator
                 .comparingInt(Player::getTotalMatches).reversed()
-                .thenComparingDouble(Player::getWinRate).reversed()
+                .thenComparing(Comparator.comparingDouble(Player::getWinRate).reversed())
                 .thenComparingInt(Player::getId);
     }
 }

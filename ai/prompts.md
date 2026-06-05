@@ -572,7 +572,7 @@ Claude wrote `src/service/RankingService.java` with getEquipmentRankingByUsageCo
 
 ## Prompt 014
 
-**Time:** (实际时间)
+**Time:** 2026-06-06 00:50
 **Tool/Model:** Claude Code (Deepseek V4 Pro)
 **Agent Role:** Implementation Agent
 **Related Commit:** (7364f04)
@@ -596,3 +596,35 @@ Claude wrote `src/service/MatchHistoryService.java` with getLastNMatchesForPlaye
 
 ### Related Git Commit
 (7364f04)
+
+---
+
+## Prompt 015
+
+**Time:** (实际时间)
+**Tool/Model:** Claude Code (Deepseek V4 Pro)
+**Agent Role:** Testing/Reviewer Agent
+**Related Commit:** (稍后填写)
+
+### My Prompt
+You are acting as a Testing/Reviewer Agent. Please review my RankingService class (code below). Check for:
+- Correctness of sorting and tie-breaking
+- Null safety (if player list is empty)
+- Potential performance issues
+- Adherence to Java naming conventions
+
+Also suggest improvements if any.
+
+[RankingService.java code was pasted here]
+
+### AI Response Summary
+Claude found a critical bug: `.reversed()` chained at the end of a comparator chain reverses ALL preceding levels, not just the last `thenComparing`. In `byWinRate()`, this caused winRate to sort ASC instead of DESC when tie-breaking on level. Same issue in `byLevel()` and `byMatches()`. Also found: unused `java.util.stream.Collectors` import, default switch branch silently returning unsorted results, and missing null/negative guards. Recommended fix: `thenComparing(Comparator...reversed())` wrapping pattern. Performance and naming passed review.
+
+### My Decision
+- **Accepted**: Fixed .reversed() chaining bug in all 3 comparators using `thenComparing(Comparator...reversed())`.
+- **Accepted**: Removed unused `java.util.stream.Collectors` import.
+- **Accepted**: Added IllegalArgumentException for null/unknown metric, negative topN guard.
+- **Rejected**: Nothing — all 4 fixes applied.
+
+### Related Git Commit
+(稍后填写)
