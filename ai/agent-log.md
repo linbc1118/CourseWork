@@ -45,3 +45,11 @@
 **Human decision:** Accepted all code. Compiled successfully.
 
 **Related commits:** (f54e03c)
+
+## Implementation Agent - Team class
+
+**Main contribution:** Wrote the Team class with ID-based player references to avoid circular references with Player. addPlayer/removePlayer using integer IDs, ID-based equals/hashCode/toString.
+
+**Human decision:** Accepted all code. Compiled successfully.
+
+**Related commits:** (稍后填写)
