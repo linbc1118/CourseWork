@@ -838,10 +838,10 @@ Enhanced AdminView.addPlayer() to auto-generate unique ID by finding max existin
 
 ## Prompt 024
 
-**Time:** 2026-06-06 (second session)
+**Time:** 2026-06-06 13:53
 **Tool/Model:** Claude Code (Deepseek V4 Pro)
 **Agent Role:** Implementation Agent
-**Related Commit:** (pending — FileStorageService + clearAllData + Main save/load)
+**Related Commit:** (2b88d58 — FileStorageService + clearAllData + Main save/load)
 
 ### My Prompt
 You are acting as an Implementation Agent. I need a FileStorageService class to save and load all data from a single text file for my Honor of Kings system.
@@ -903,16 +903,16 @@ Two compilation issues were fixed: GBK encoding errors from em-dashes in comment
 - **Rejected**: Nothing. All compilation issues fixed.
 
 ### Related Git Commit
-(pending — FileStorageService + clearAllData + Main save/load)
+(2b88d58 — FileStorageService + clearAllData + Main save/load)
 
 ---
 
 ## Prompt 025
 
-**Time:** 2026-06-06 (second session, after testing)
+**Time:** 2026-06-06 13:53
 **Tool/Model:** Claude Code (Deepseek V4 Pro)
 **Agent Role:** Implementation Agent
-**Related Commit:** (pending)
+**Related Commit:** (2b88d58)
 
 ### My Prompt
 Please add a method clearAllData() to DataManager. It should clear all lists (players, admins, heroes, equipmentList, teams, matchRecords) by creating new empty ArrayLists. Do not change the singleton/instance nature.
@@ -936,16 +936,16 @@ This matches the constructor initialization pattern and ensures stale external r
 - **Rejected**: Nothing.
 
 ### Related Git Commit
-(pending)
+(2b88d58)
 
 ---
 
 ## Prompt 026
 
-**Time:** 2026-06-06 (second session, after save/load testing)
+**Time:** 2026-06-06 13:53
 **Tool/Model:** Claude Code (Deepseek V4 Pro)
 **Agent Role:** Implementation Agent
-**Related Commit:** (pending)
+**Related Commit:** (2b88d58)
 
 ### My Prompt
 Please modify my Main class (show the complete new Main.java) to:
@@ -980,16 +980,16 @@ Compiled successfully.
 - **Rejected**: Nothing.
 
 ### Related Git Commit
-(pending)
+(2b88d58)
 
 ---
 
 ## Prompt 027
 
-**Time:** 2026-06-06 (second session, after user reported data loss)
+**Time:** 2026-06-06 13:53
 **Tool/Model:** Claude Code (Deepseek V4 Pro)
 **Agent Role:** Implementation Agent
-**Related Commit:** (pending)
+**Related Commit:** (2b88d58)
 
 ### My Prompt
 Username: lbc / Password: lbc → Invalid credentials. Please try again.
@@ -1020,4 +1020,4 @@ Runtime.getRuntime().addShutdownHook(new Thread(() -> {
 - **Rejected**: Nothing.
 
 ### Related Git Commit
-(pending)
+(2b88d58)

@@ -72,4 +72,53 @@ I will write at least 10 manual test cases in docs/test-cases.md covering:
 Risk: Player-Hero-Equipment association may be complex. Mitigation: Store a Map<Hero, List<Equipment>> inside Player class.
 
 ## 12. Final Reflection Placeholder
-(To be filled at the end of the project)
+# AI Reflection
+
+## 1. Which AI tools or models did you use?
+I used Claude Code (Deepseek V4 Pro) as my main AI assistant. I used the same model in three roles: Architect, Implementation, and Reviewer.
+
+## 2. Which prompt was the most useful? Why?
+The most useful prompt was the one for implementing DataInitializer. It clearly specified the required data quantities (10 players, 15 heroes, etc.) and relationships. The AI generated a large set of usable test data at once, saving me from manual entry. This prompt taught me how to "guide AI with concrete requirements".
+
+## 3. Which AI-generated suggestion was wrong, incomplete, or misleading?
+My original design used `Map<Hero, List<Equipment>>` in the Player class, but the Architect Agent flagged this as fragile (mutable-key hashCode problems) and recommended switching to ID-based keys (`Map<Integer, List<Integer>>`). This was a case where the AI corrected my design rather than the other way around. Also, the AI-generated `FileStorageService` initially had GBK encoding errors from em-dash characters in comments, which were fixed by replacing them with standard ASCII characters.
+
+## 4. How did you check whether AI-generated code was correct?
+I used the following methods:
+- Checked for compilation errors (red underlines) in IntelliJ IDEA.
+- Ran the program and manually tested relevant features.
+- For complex logic (e.g., leaderboard sorting), I printed intermediate results and verified them manually.
+- Asked the AI to act as a Reviewer Agent to re‑examine the code.
+
+## 5. What bugs did you fix yourself instead of asking AI to fix?
+- The shutdown hook: after discovering that data was lost when the program was terminated unexpectedly (e.g., clicking the IDE Stop button instead of typing "exit"), I added a `Runtime.addShutdownHook` to save data on any termination.
+- The AI's `RankingService` had a `.reversed()` chaining bug in the comparators — `.reversed()` at the end of the chain reversed ALL tie-breaking levels, not just the last one. This was actually caught by the Reviewer Agent (not me directly), and the AI applied the fix.
+- File path issues (relative vs. absolute) – I chose to use `data.txt` in the project root directory for simplicity.
+
+## 6. What Java concept did you understand better after using AI?
+I gained a better understanding of:
+- How to use Map and List together in the collections framework to express relationships (Player → Hero → Equipment).
+- Inheritance and polymorphism: `Person` as an abstract class, with `Player` and `Admin` overriding `getRoleDisplay()`.
+- Exception handling: using try‑catch for file I/O and input conversion.
+
+## 7. What Java concept are you still unsure about?
+- Advanced generics (e.g., `? extends Person`).
+- Multithreading and concurrency (not covered in this project).
+- Complex operations with lambda expressions and the Stream API – some AI‑generated code runs but I don’t fully understand it.
+
+## 8. Did AI make the project easier, harder, or both? Explain.
+Both. It was easier because I didn’t have to look up syntax from scratch; I could ask the AI to generate boilerplate code and then modify it. It was harder because sometimes the AI’s code contained hidden bugs that required time to understand and fix. Also, recording prompts and agent logs added extra work, but it helped me keep track of what I had asked.
+
+## 9. Which parts of the final project were mainly written by you?
+- The first draft of `plan.md` (though I incorporated AI suggestions, the structure and content were my own).
+- Some manual test cases (`test-cases.md`).
+- The logic that wires services together in the UI menu (the AI generated the framework, but I adjusted the call order).
+- Git commit messages and branch management.
+
+## 10. Which parts were mainly generated or heavily assisted by AI?
+- Initial versions of all model classes (`Person`, `Player`, `Admin`, `Hero`, `Equipment`, `Team`, `MatchRecord`).
+- Most of `DataManager` and `DataInitializer`.
+- The four service classes (`AuthenticationService`, `SearchService`, `RankingService`, `MatchHistoryService`).
+- The initial structure and many methods of the UI layer (`MenuView`, `PlayerView`, `AdminView`).
+- The complete implementation of `FileStorageService` (extra credit).
+- Most of the prompt records and agent log format templates.
