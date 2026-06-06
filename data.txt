@@ -1,0 +1,119 @@
+==PLAYERS==
+1|Zhang Fei|player1|pass1|45|120|75|1
+2|Guan Yu|player2|pass2|42|105|60|1
+3|Liu Bei|player3|pass3|38|90|50|1
+4|Cao Cao|player4|pass4|50|150|100|1
+5|Sun Quan|player5|pass5|30|70|35|2
+6|Lu Bu|player6|pass6|48|130|90|2
+7|Diao Chan|player7|pass7|35|80|45|2
+8|Zhao Yun|player8|pass8|40|100|55|3
+9|Zhou Yu|player9|pass9|25|50|20|3
+10|Sima Yi|player10|pass10|33|60|30|3
+11|1234|123|1234|1|1|1|null
+
+==PLAYER_HERO_EQUIPMENT==
+1|1|
+1|4|
+1|8|
+2|2|
+2|6|
+2|7|
+3|3|
+3|9|
+3|12|
+4|4|
+4|5|
+4|14|
+5|6|
+5|10|
+6|1|
+6|5|
+6|11|
+7|13|
+7|15|
+8|3|
+8|7|
+8|8|
+9|2|
+9|11|
+9|14|
+10|4|
+10|6|
+10|12|
+
+==ADMINS==
+1|System Admin|admin|admin123
+
+==HEROES==
+1|Li Bai|ASSASSIN|hp=1200,defense=40,attack=90
+2|Diao Chan|MAGE|hp=1000,defense=30,attack=75
+3|Luban No.7|MARKSMAN|hp=950,defense=35,attack=85
+4|Kai|WARRIOR|hp=1400,defense=70,attack=80
+5|Sun Wukong|ASSASSIN|hp=1150,defense=45,attack=95
+6|Zhao Yun|WARRIOR|hp=1350,defense=65,attack=78
+7|Hua Mulan|WARRIOR|hp=1300,defense=60,attack=82
+8|Cheng Yaojin|TANK|hp=1800,defense=95,attack=55
+9|Zhuang Zhou|SUPPORT|hp=1600,defense=80,attack=50
+10|Cai Wenji|SUPPORT|hp=1100,defense=60,attack=40
+11|Sun Shangxiang|MARKSMAN|hp=900,defense=30,attack=88
+12|Hou Yi|MARKSMAN|hp=880,defense=28,attack=92
+13|Daji|MAGE|hp=980,defense=25,attack=80
+14|Zhen Ji|MAGE|hp=1020,defense=32,attack=72
+15|Mo Xie|MAGE|hp=960,defense=28,attack=78
+
+==HERO_COMPATIBLE_EQUIPMENT==
+1|1,5,7
+2|3,12,13
+3|1,11,15
+4|4,6,17
+5|2,8,20
+6|4,9,18
+7|6,10,19
+8|4,14,17
+9|12,13,16
+10|9,10,13
+11|1,11,15
+12|2,7,15
+13|3,12,14
+14|3,5,13
+15|2,3,7
+
+==EQUIPMENT==
+1|Shadow Blade|0
+2|Endless Battle|0
+3|Hex Core|0
+4|Guardian Angel|0
+5|Blade of Despair|0
+6|Frost Cape|0
+7|Lightning Trident|0
+8|Sword of Rupture|0
+9|Armor of Faith|0
+10|Shoes of Tranquility|0
+11|Tiger Gauntlets|0
+12|Sage's Stone|0
+13|Eye of Phoenix|0
+14|Dragon Scale|0
+15|Moonlight Sword|0
+16|Crimson Gem|0
+17|Silver Shield|0
+18|Golden Armor|0
+19|Iron Helmet|0
+20|Warrior's Axe|0
+
+==TEAMS==
+1|Team Dragon|1,2,3,4
+2|Team Tiger|5,6,7
+3|Team Eagle|8,9,10
+
+==MATCH_RECORDS==
+1|1|2|2025-01-15|WIN|1=1,2=2,3=6,4=4,5=3,6=5,7=10
+2|3|1|2025-02-10|LOSS|1=1,2=4,3=8,4=11,8=7,9=9,10=15
+3|2|3|2025-03-05|WIN|5=12,6=5,7=13,8=8,9=14,10=3
+4|1|3|2025-03-20|DRAW|1=6,2=4,3=7,4=1,8=11,9=10,10=2
+5|1|2|2025-04-08|LOSS|1=2,2=7,3=4,4=5,5=8,6=6,7=3
+6|2|1|2025-05-12|WIN|1=6,2=7,3=4,4=2,5=1,6=5,7=14
+7|3|2|2025-06-01|WIN|5=3,6=8,7=9,8=12,9=13,10=15
+8|1|3|2025-07-18|WIN|1=1,2=6,3=7,4=8,8=10,9=11,10=13
+9|2|3|2025-08-22|WIN|5=5,6=1,7=2,8=4,9=11,10=12
+10|1|2|2025-09-30|WIN|1=4,2=8,3=6,4=5,5=2,6=7,7=10
+

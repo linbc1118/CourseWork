@@ -833,3 +833,191 @@ Enhanced AdminView.addPlayer() to auto-generate unique ID by finding max existin
 
 ### Related Git Commit
 (3bc3a79)
+
+---
+
+## Prompt 024
+
+**Time:** 2026-06-06 (second session)
+**Tool/Model:** Claude Code (Deepseek V4 Pro)
+**Agent Role:** Implementation Agent
+**Related Commit:** (pending — FileStorageService + clearAllData + Main save/load)
+
+### My Prompt
+You are acting as an Implementation Agent. I need a FileStorageService class to save and load all data from a single text file for my Honor of Kings system.
+
+Package: service
+
+The data to save:
+- All players
+- All admins
+- All heroes
+- All equipment
+- All teams
+- All match records
+- Plus the relationships: each player's heroEquipmentMap, and each hero's compatibleEquipmentIds.
+
+The file format can be a simple custom format.
+
+**Save method**: public void saveAllData(DataManager dm, String filePath) throws IOException
+   - Write each category with a header line like "==PLAYERS=="
+   - For each player, write a line with fields separated by '|' or ','.
+   - For player's heroEquipmentMap: after writing players, write a separate section "==PLAYER_HERO_EQUIPMENT==" with lines: playerId,heroId,equipmentIds (comma-separated)
+   - Similarly for hero's compatibleEquipmentIds: section "==HERO_COMPATIBLE_EQUIPMENT=="
+
+**Load method**: public void loadAllData(DataManager dm, String filePath) throws IOException
+   - Read line by line, rebuild all objects and add to dm.
+   - If file does not exist, do nothing (caller will handle).
+
+Write the complete code with comments. Use BufferedReader and BufferedWriter. Assume all IDs are unique.
+Make sure to clear existing data in dm before loading (dm.clearAllData() - we'll add that method to DataManager if needed).
+
+### AI Response Summary
+Claude first explored the entire codebase to understand all model classes (fields, constructors, getters/setters), DataManager structure, and DataInitializer relationships. Then created three files:
+
+1. **`src/service/FileStorageService.java`** (~552 lines) — Persistence class with 8 section types:
+   - `==PLAYERS==` — id|name|username|password|level|totalMatches|wins|teamId (teamId="null" if no team)
+   - `==PLAYER_HERO_EQUIPMENT==` — playerId|heroId|equipId1,equipId2,...
+   - `==ADMINS==` — id|name|username|password
+   - `==HEROES==` — id|name|type|key1=val1,key2=val2
+   - `==HERO_COMPATIBLE_EQUIPMENT==` — heroId|equipId1,equipId2,...
+   - `==EQUIPMENT==` — id|name|usageCount
+   - `==TEAMS==` — id|name|playerId1,playerId2,...
+   - `==MATCH_RECORDS==` — id|teamAId|teamBId|date|result|playerId=heroId,...
+   
+   Public API: `saveAllData(DataManager, String)` writes using BufferedWriter; `loadAllData(DataManager, String)` reads with BufferedReader, clears existing data first, collects relationship lines during first pass, then resolves cross-references in second pass. Orphaned relationships silently skipped. Private helpers: `join()` (pipe-delimited field building), `joinComma()` (list serialization), `joinMap<K>()` (generic key=value serialization for baseStats and playerHeroPicks — avoids erasure conflict between Map<String,Integer> and Map<Integer,Integer>).
+
+2. **`DataManager.clearAllData()`** — Added method to clear all 6 entity lists (initially using `.clear()`, later changed to new ArrayList instances per Prompt 025).
+
+3. **`Main.java`** — Integrated with load-on-startup/save-on-exit flow:
+   - On startup: if `data.txt` exists → loadAllData(); if missing → DataInitializer + save
+   - After `menu.start()` returns (user types "exit" at login) → saveAllData()
+   - IOException handling with fallback to seed data
+
+Two compilation issues were fixed: GBK encoding errors from em-dashes in comments, and duplicate `joinMap` erasure (merged into single generic `<K>` method). Final compilation succeeded. End-to-end test verified: first run creates data.txt from seed data with all 10 players/15 heroes/20 equipment/3 teams/10 matches; save format verified correct.
+
+### My Decision
+- **Accepted**: Full FileStorageService with 8-section pipe-delimited format, buffered I/O, two-pass load for relationship resolution.
+- **Accepted**: clearAllData() method added to DataManager.
+- **Accepted**: Main.java save/load lifecycle — load on startup, save on clean exit.
+- **Rejected**: Nothing. All compilation issues fixed.
+
+### Related Git Commit
+(pending — FileStorageService + clearAllData + Main save/load)
+
+---
+
+## Prompt 025
+
+**Time:** 2026-06-06 (second session, after testing)
+**Tool/Model:** Claude Code (Deepseek V4 Pro)
+**Agent Role:** Implementation Agent
+**Related Commit:** (pending)
+
+### My Prompt
+Please add a method clearAllData() to DataManager. It should clear all lists (players, admins, heroes, equipmentList, teams, matchRecords) by creating new empty ArrayLists. Do not change the singleton/instance nature.
+
+Write just this method.
+
+### AI Response Summary
+Claude noted that the method already existed from Prompt 024 but used `.clear()` on each list. The user explicitly wanted **new ArrayList instances** instead. Claude entered plan mode, wrote a plan updating `clearAllData()` to:
+```java
+this.players = new ArrayList<>();
+this.admins = new ArrayList<>();
+this.heroes = new ArrayList<>();
+this.equipmentList = new ArrayList<>();
+this.teams = new ArrayList<>();
+this.matchRecords = new ArrayList<>();
+```
+This matches the constructor initialization pattern and ensures stale external references are harmless. After plan approval, the edit was applied and compiled cleanly.
+
+### My Decision
+- **Accepted**: Replaced .clear() calls with new ArrayList instances.
+- **Rejected**: Nothing.
+
+### Related Git Commit
+(pending)
+
+---
+
+## Prompt 026
+
+**Time:** 2026-06-06 (second session, after save/load testing)
+**Tool/Model:** Claude Code (Deepseek V4 Pro)
+**Agent Role:** Implementation Agent
+**Related Commit:** (pending)
+
+### My Prompt
+Please modify my Main class (show the complete new Main.java) to:
+
+1. Create DataManager instance.
+2. Create FileStorageService instance.
+3. Try to load data from "data.txt" (or a path like "./savedata/data.txt" – create the folder if needed).
+4. If loading fails (file not found), call DataInitializer.initialize(dm) to create initial hardcoded data, then immediately call fileStorage.saveAllData(dm, "data.txt") to save.
+5. If loading succeeds, we have restored previous data.
+6. Then create services and start menu as before.
+
+Also, when the program exits normally (user logs out and chooses 'exit'), auto-save data to file. Since it's a console app, we can add a shutdown hook or just save after the menu loop.
+
+For simplicity: after menu.start() returns (when user selects exit), save data before program ends.
+
+### AI Response Summary
+Claude rewrote Main.java with the complete save/load lifecycle:
+
+**Startup phase:**
+- If `data.txt` does NOT exist → DataInitializer.initialize(dm), then immediately saveAllData() to persist seed data
+- If `data.txt` EXISTS → loadAllData(dm) to restore previous session data
+- If loadAllData() throws IOException → print error, fall back to DataInitializer.initialize(dm)
+
+**Shutdown phase:**
+- After `menu.start()` returns → saveAllData(dm, "data.txt")
+- IOException is caught and printed as non-fatal warning
+
+Compiled successfully.
+
+### My Decision
+- **Accepted**: Complete Main.java rewrite with load-on-startup, save-on-exit flow.
+- **Rejected**: Nothing.
+
+### Related Git Commit
+(pending)
+
+---
+
+## Prompt 027
+
+**Time:** 2026-06-06 (second session, after user reported data loss)
+**Tool/Model:** Claude Code (Deepseek V4 Pro)
+**Agent Role:** Implementation Agent
+**Related Commit:** (pending)
+
+### My Prompt
+Username: lbc / Password: lbc → Invalid credentials. Please try again.
+我通过程序添加了新的人物为什么会出现这种情况
+(I added a new character through the program, why is this happening?)
+
+### AI Response Summary
+Claude investigated and found the root cause: the current `data.txt` contained only the 10 seed players (player1~player10) — the user's added player "lbc" was never persisted. The diagnosis:
+
+**Root cause:** Saving only happens on **clean exit** — `saveAllData()` runs after `menu.start()` returns, which only happens when the user types "exit" at the login prompt. If the user closes the terminal window, clicks IDE Stop, or presses Ctrl+C, `menu.start()` never returns and the save code never executes → data loss.
+
+**Fix applied:** Added a JVM **shutdown hook** (`Runtime.getRuntime().addShutdownHook()`) that saves data even on unexpected termination:
+```java
+AtomicBoolean saved = new AtomicBoolean(false);
+Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+    if (!saved.get()) {
+        fileStorage.saveAllData(dm, SAVE_FILE);
+    }
+}));
+```
+- Clean exit (user types "exit") → normal save sets `saved=true`, hook skips
+- Forced termination (Stop button / Ctrl+C) → hook triggers rescue save
+- `AtomicBoolean` prevents race condition between both paths
+
+### My Decision
+- **Accepted**: Shutdown hook added to prevent data loss on unexpected termination.
+- **Accepted**: Root cause diagnosis — save-only-on-clean-exit design flaw.
+- **Rejected**: Nothing.
+
+### Related Git Commit
+(pending)

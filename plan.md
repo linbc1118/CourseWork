@@ -1,3 +1,4 @@
+
 # Plan for Honor of Kings Information System
 
 ## 1. Project Goal

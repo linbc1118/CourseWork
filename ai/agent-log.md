@@ -183,3 +183,35 @@ Recommended fix: use `thenComparing(Comparator.comparingInt(...).reversed())` in
 **Human decision:** Accepted.
 
 **Related commits:** (3bc3a79)
+
+## Implementation Agent - FileStorageService
+
+**Main contribution:** Wrote the complete FileStorageService class (~552 lines) for persisting all system data to a single text file. Designed a simple pipe-delimited format with 8 section types (PLAYERS, PLAYER_HERO_EQUIPMENT, ADMINS, HEROES, HERO_COMPATIBLE_EQUIPMENT, EQUIPMENT, TEAMS, MATCH_RECORDS). Uses BufferedWriter/BufferedReader for I/O. Two-pass loading: first pass parses entities, second pass resolves cross-entity relationships (player hero ownership, hero equipment compatibility). Handles edge cases: null teamId (saved as "null" literal), empty equipment lists, empty playerHeroPicks, missing file (returns silently), orphaned relationships (skipped). Added generic joinMap\<K\> to avoid erasure conflicts between Map\<String,Integer\> and Map\<Integer,Integer\>. Also added clearAllData() to DataManager and integrated save/load lifecycle into Main.java.
+
+**Human decision:** Accepted all code. Compilation fixes applied (GBK em-dashes, generic erasure). End-to-end save/load tested successfully.
+
+**Related commits:** (pending)
+
+## Implementation Agent - DataManager.clearAllData()
+
+**Main contribution:** Updated the clearAllData() method from using .clear() on each list to creating new ArrayList instances. This ensures any stale external references to the old lists become harmless, matching the constructor initialization pattern.
+
+**Human decision:** Accepted. Compiles cleanly.
+
+**Related commits:** (pending)
+
+## Implementation Agent - Main.java save/load + shutdown hook
+
+**Main contribution:** Rewrote Main.java with complete data persistence lifecycle: load on startup (file exists → restore; file missing → seed + save), save on clean exit (after menu.start() returns). Diagnosed data loss issue (user's added player "lbc" not in data.txt) — root cause was save-only-on-clean-exit design. Added JVM shutdown hook with AtomicBoolean guard to save data even on unexpected termination (IDE Stop button, Ctrl+C, window close).
+
+**Human decision:** Accepted all changes. Shutdown hook prevents future data loss.
+
+**Related commits:** (pending)
+
+## Testing/Reviewer Agent - FileStorageService save/load
+
+**Main contribution:** Implicitly tested during implementation — verified data.txt content after first run contained all 10 players, 15 heroes, 20 equipment, 3 teams, 10 match records plus all relationships. Confirm the pipe-delimited format parses correctly on load. No formal review agent was spawned for this task.
+
+**Human decision:** Accept manual verification results.
+
+**Related commits:** (pending)

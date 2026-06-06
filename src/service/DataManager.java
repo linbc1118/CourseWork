@@ -41,6 +41,22 @@ public class DataManager {
         this.matchRecords = new ArrayList<>();
     }
 
+    // ========== Clear All Data ==========
+
+    /**
+     * Clears all entity collections, resetting the DataManager to an empty state.
+     * Called by FileStorageService.loadAllData() before loading from a file
+     * to avoid duplicate entries.
+     */
+    public void clearAllData() {
+        this.players = new ArrayList<>();
+        this.admins = new ArrayList<>();
+        this.heroes = new ArrayList<>();
+        this.equipmentList = new ArrayList<>();
+        this.teams = new ArrayList<>();
+        this.matchRecords = new ArrayList<>();
+    }
+
     // ========== List Getters ==========
 
     /** Returns the full list of players (direct reference for simplicity). */
